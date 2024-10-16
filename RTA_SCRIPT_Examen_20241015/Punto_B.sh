@@ -22,7 +22,7 @@ EOF
 #creamos el resto de forma logica.
 
 for i in {5..11}; do
-        echo -e "n\n+1G\nW" | sudo fdisk /dev/sdc
+        echo -e "n\n\n+1G\nW" | sudo fdisk /dev/sdc
 done
 #formateamos cada uno de las particiones con extension4
 
