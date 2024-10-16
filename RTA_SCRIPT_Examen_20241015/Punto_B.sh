@@ -4,35 +4,64 @@
 
 echo sudo su
 
-#creamos las primeras 4 particiones primarias de 1gb
+#creamos las primeras 4 particiones primarias de 1gb, 1 particion extendida de 7gb con 6 particiones logicas de 1gb
 
-for i in {1..3}; do
-        echo -e "n\np\n\n\n+1G\nw" | sudo fdisk /dev/sdc
-done
-
-#creamos una particion extendida con el resto de memoria restante
 sudo fdisk /dev/sdc << EOF
+n
+p
+
+
++1G
+n
+p
+
+
++1G
+n
+p
+
+
++1G
 n
 e
 
 
+n
+
++1G
+n
+
++1G
+n
+
++1G
+n
+
++1G
+n
+
++1G
+n
+
++1G
+n
+
++1G
 w
 EOF
 
-#creamos el resto de forma logica.
-
-for i in {5..11}; do
-        echo -e "n\n\n+1G\nW" | sudo fdisk /dev/sdc
-done
 #formateamos cada uno de las particiones con extension4
 
-for i in {1..3}; do
-        sudo mkfs.ext4 "/dev/sdc${i}"
-done
-
-for i in {5..11}; do
-        sudo mkfs.ext4 "/dev/sdc${i}"
-done
+sudo mkfs.ext4 /dev/sdc1
+sudo mkfs.ext4 /dev/sdc2
+sudo mkfs.ext4 /dev/sdc3
+sudo mkfs.ext4 /dev/sdc5
+sudo mkfs.ext4 /dev/sdc6
+sudo mkfs.ext4 /dev/sdc7
+sudo mkfs.ext4 /dev/sdc8
+sudo mkfs.ext4 /dev/sdc9
+sudo mkfs.ext4 /dev/sdc10
+sudo mkfs.ext4 /dev/sdc11
 
 #montamos cada uno
 
