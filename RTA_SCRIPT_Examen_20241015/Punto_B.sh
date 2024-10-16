@@ -7,7 +7,7 @@ echo sudo su
 #creamos las primeras 4 particiones primarias de 1gb
 
 for i in {1..3}; do
-        echo -e "n\np\n$i\n\n+1G\nw" | sudo fdisk /dev/sdc
+        echo -e "n\np\n\n\n+1G\nw" | sudo fdisk /dev/sdc
 done
 
 #creamos una particion extendida con el resto de memoria restante
@@ -22,7 +22,7 @@ EOF
 #creamos el resto de forma logica.
 
 for i in {5..11}; do
-        echo -e "n\nl\n$i\n\n+1G\nW" | sudo fdisk /dev/sdc
+        echo -e "n\n+1G\nW" | sudo fdisk /dev/sdc
 
 #formateamos cada uno de las particiones con extension4
 
